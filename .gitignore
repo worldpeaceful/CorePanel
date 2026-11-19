@@ -1,0 +1,15 @@
+bin/
+obj/
+/.vs/
+/.idea/
+/artifacts/
+/release/
+/dependencies/
+*.user
+*.suo
+*.lnk
+*.log
+*.zip
+*.zip.sha256
+settings.json
+diagnostic*.json

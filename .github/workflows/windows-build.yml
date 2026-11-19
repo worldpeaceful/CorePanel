@@ -1,0 +1,22 @@
+name: Windows build
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2025
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - name: Restore locked dependencies
+        run: dotnet restore ./LcdWidget/LcdWidget.csproj -r win-x64 --locked-mode -p:SelfContained=true
+      - name: Build Release
+        run: dotnet build ./LcdWidget/LcdWidget.csproj -c Release -r win-x64 --self-contained true --no-restore
